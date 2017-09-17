@@ -1,0 +1,12 @@
+extends:
+  - "@ianwremmel"
+  - "@ianwremmel/eslint-config/esnext"
+  - "@ianwremmel/eslint-config/import"
+env:
+  node: true
+  es6: true
+parser: babel-eslint
+rules:
+  new-cap:
+    - error
+    - capIsNewExceptionPattern: "(?:[express|loopback]\\.Router$)|^S$"

@@ -1,0 +1,22 @@
+version: 2
+jobs:
+  build:
+    working_directory: /workspace/project
+    docker:
+      - image: node:7.10.1
+        environment:
+          npm_config_log_level: warn
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - project-{{ .Branch }}{{ checksum "package.json" }}
+            - project-{{ .Branch }}
+            - project-master
+      - run: npm install
+      - run: npm test
+      - save_cache:
+          key: project-{{ .Branch }}{{ checksum "package.json" }}
+          paths:
+            - /workspace/project/node_modules
+            - /workspace/bin

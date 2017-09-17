@@ -1,0 +1,58 @@
+{
+  "name": "terraform-state-server",
+  "version": "1.0.0",
+  "description": "",
+  "author": "Ian W. Remmel <design@ianwremmel.com>",
+  "license": "MIT",
+  "main": "src/index.js",
+  "scripts": {
+    "precommit": "npm run --silent lint:staged",
+    "commitmsg": "npm run --silent lint:commitmsg",
+    "lint": "npm run --silent lint:js && npm run --silent lint:changelog",
+    "lint:changelog": "conventional-changelog-lint --from origin/master --to HEAD",
+    "lint:commitmsg": "conventional-changelog-lint -e",
+    "lint:eslint": "eslint --ignore-path .gitignore",
+    "lint:js": "npm run --silent lint:eslint -- .",
+    "lint:staged": "lint-staged",
+    "start": "node -r babel-register .",
+    "test": "./test/spec/test.sh",
+    "posttest": "npm run lint && nsp check"
+  },
+  "keywords": [],
+  "dependencies": {
+    "body-parser": "^1.18.1",
+    "bunyan": "^2.0.2",
+    "compression": "^1.0.3",
+    "express": "^4.15.4",
+    "express-basic-auth": "^1.1.2",
+    "morgan": "^1.8.2",
+    "pg": "^7.3.0"
+  },
+  "devDependencies": {
+    "@ianwremmel/eslint-config": "^2.2.0",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^7.2.3",
+    "babel-preset-env": "^1.6.0",
+    "babel-register": "^6.26.0",
+    "conventional-changelog": "^1.1.5",
+    "conventional-changelog-lint": "^2.1.1",
+    "eslint": "^4.7.0",
+    "eslint-config-loopback": "^8.0.0",
+    "eslint-config-prettier": "^2.5.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-mocha": "^4.11.0",
+    "eslint-plugin-prettier": "^2.2.0",
+    "husky": "^0.14.3",
+    "lint-staged": "^4.2.1",
+    "nsp": "^2.1.0",
+    "prettier": "^1.7.0"
+  },
+  "engines": {
+    "node": ">=7.10.1",
+    "npm": ">=5.4.1"
+  },
+  "private": true,
+  "lint-staged": {
+    "*.js": "lint:eslint"
+  }
+}
