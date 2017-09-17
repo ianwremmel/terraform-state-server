@@ -1,7 +1,7 @@
 {
   "name": "terraform-state-server",
   "version": "1.0.0",
-  "description": "",
+  "description": "Lightweight Terraform state server (with locking support)",
   "author": "Ian W. Remmel <design@ianwremmel.com>",
   "license": "MIT",
   "main": "src/index.js",
