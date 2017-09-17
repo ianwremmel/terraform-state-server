@@ -48,7 +48,7 @@ trap 'set +e; [ -n "${PID}" ] && kill ${PID}' EXIT
 export DATABASE_URL=postgres://postgres:password@localhost:5432/postgres
 
 cd "$(dirname "$0")"
-START_DIR=$(PWD)
+START_DIR=$(pwd)
 
 npm run clean
 
