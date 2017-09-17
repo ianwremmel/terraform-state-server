@@ -17,10 +17,30 @@ jobs:
             - project-{{ .Branch }}{{ checksum "package.json" }}
             - project-{{ .Branch }}
             - project-master
+      - restore_cache:
+          keys:
+            - terraform-0.10.5
+      - run:
+          name: Install Terraform
+          command: |
+            mkdir -p bin
+            cd bin
+            if [ ! -e terraform ]; then
+              wget https://releases.hashicorp.com/terraform/0.10.5/terraform_0.10.5_linux_amd64.zip
+              unzip terraform_0.10.5_linux_amd64.zip
+              chmod +x ./terraform
+              rm terraform_0.10.5_linux_amd64.zip
+            fi
+          working_directory: /workspace
+      - save_cache:
+          key: terraform-0.10.5
+          paths:
+            - /workspace/bin
+          when: always
       - run: npm install
-      - run: npm test
+      - run: PATH="/workspace/bin:${PATH}" npm test
       - save_cache:
           key: project-{{ .Branch }}{{ checksum "package.json" }}
           paths:
             - /workspace/project/node_modules
-            - /workspace/bin
+          when: always
