@@ -25,8 +25,8 @@ jobs:
           command: |
             mkdir -p bin
             cd bin
+            apt-get update && apt-get install -y unzip lsof
             if [ ! -e terraform ]; then
-              apt-get update && apt-get install -y unzip
               wget https://releases.hashicorp.com/terraform/0.10.5/terraform_0.10.5_linux_amd64.zip
               unzip terraform_0.10.5_linux_amd64.zip
               chmod +x ./terraform
@@ -45,3 +45,5 @@ jobs:
           paths:
             - /workspace/project/node_modules
           when: always
+      - store_artifacts:
+          path: /workspace/project/reports
