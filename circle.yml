@@ -6,6 +6,10 @@ jobs:
       - image: node:7.10.1
         environment:
           npm_config_log_level: warn
+          DATABASE_URL: postgres://postgres:password@localhost:5432/postgres
+      - image: postgres
+        environment:
+          POSTGRES_PASSWORD: password
     steps:
       - checkout
       - restore_cache:
