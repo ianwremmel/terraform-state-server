@@ -1,3 +1,5 @@
+import assert from 'assert';
+
 import express from 'express';
 import bodyParser from 'body-parser';
 import basicAuth from 'express-basic-auth';
@@ -9,6 +11,9 @@ const router = express.Router();
 export default router;
 
 if (process.env.BASIC_AUTH_USER || process.env.BASIC_AUTH_PASSWORD) {
+  assert(process.env.BASIC_AUTH_USER, `BASIC_AUTH_USER must be set if BASIC_AUTH_PASSWORD is set`);
+  assert(process.env.BASIC_AUTH_PASSWORD, `BASIC_AUTH_PASSWORD must be set if BASIC_AUTH_USER is set`);
+
   router.use(basicAuth({users: {[`${process.env.BASIC_AUTH_USER}`]: process.env.BASIC_AUTH_PASSWORD}}));
 }
 

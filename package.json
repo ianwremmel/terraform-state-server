@@ -8,6 +8,7 @@
   "scripts": {
     "precommit": "npm run --silent lint:staged",
     "commitmsg": "npm run --silent lint:commitmsg",
+    "clean": "rimraf ./test/spec/*/{.terraform,errored.tfstate,terraform.tfstate.backup}",
     "lint": "npm run --silent lint:js && npm run --silent lint:changelog",
     "lint:changelog": "conventional-changelog-lint --from origin/master --to HEAD",
     "lint:commitmsg": "conventional-changelog-lint -e",
