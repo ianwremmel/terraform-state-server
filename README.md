@@ -1,5 +1,6 @@
 # terraform-state-server
 
+[![CircleCI](https://circleci.com/gh/ianwremmel/terraform-state-server.svg?style=svg)](https://circleci.com/gh/ianwremmel/terraform-state-server)
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 
 > Lightweight Terraform state server (with locking support)
