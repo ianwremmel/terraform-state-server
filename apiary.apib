@@ -8,11 +8,15 @@ This is a reverse-engineered definition of the Terraform state protocol based on
 
 ### Get State [GET]
 
+Retrieve state
+
 + Response 200
 
 + Response 404
 
 ### Create or Update State [POST /state{?ID}]
+
+Create or update state with optional locking (include the ID parameter for locking)
 
 + Parameters
     + ID: true (optional) - lock id returned by `LOCK /state`
@@ -37,6 +41,8 @@ This is a reverse-engineered definition of the Terraform state protocol based on
         }
 
 ### Create Lock [LOCK]
+
+Lock the state and prevent anyone else from making changes until it's unlocked. You'll need to present the ID parameter when calling POST
 
 + Request (application/json)
 
@@ -65,6 +71,9 @@ This is a reverse-engineered definition of the Terraform state protocol based on
         }
 
 ### Release Lock [UNLOCK /state{?force}]
+
+Release the lock so that others may make changes. You'll need to supply, at a minimum, the lock ID that you're holding.
+
 + Parameters
     + force (optional) - use to unlock in event that no one owns the lock any more. Could happen if something goes very wrong when terraform is running. USE WITH CARE
 
@@ -100,15 +109,16 @@ This is a reverse-engineered definition of the Terraform state protocol based on
 
 ### Purge [DELETE /state{?force}]
 
+Delete all state and start over
+
 + Parameters
     + force (optional) - ignores the lock check for cases where you definitely want to purge (e.g. if a lock is stuck and you really don't care about your state). USE WITH CARE
 
 + Response 200
 
+## Operations [/ping]
 
-## ping [/ping]
-
-### Ping [GET]
+### Send Ping [GET]
 
 Simple endpoint for proving the service is turned on.
 
