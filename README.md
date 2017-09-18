@@ -24,7 +24,11 @@ Alternatively, Terraform can be configured to point at a number of different [ba
 
 ### On Heroku
 
-Just click this button: [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+Just click this button: 
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
+This'll configure a [hobby dyno]() and a [heroku postgres]() dev plan, so won't sign you to pay for anything (though you may need a credit card on file to install addons). The dev plan should be more than adequate. At least for this iteration, the server only needs one table with one row. As long as you can tollerate a few extra seconds of latency from time to time, a hobby dyno should be more than adequate for this purpose. 
 
 ### Manually
 
@@ -42,16 +46,37 @@ npm start
 Put the following directive in your project's terraform config.
 
 ```hcl
+variable "BASIC_AUTH_USER" {}
+
+variable "BASIC_AUTH_PASSWORD" {}
+
 terraform {
   backend "http" {
     username = "${var.BASIC_AUTH_USER}"
-    password = "${var.BASIC_AUTH_PASSWORD"
-    address = "${var.STATE_URI"
+    password = "${var.BASIC_AUTH_PASSWORD}"
+    address = "${var.STATE_URI}"
   }
 }
 ```
 
+> If you deployed via the heroku button, you can use `heroku config --app YOUR_APP_NAME` to get `BASIC_AUTH_USER` and `BASIC_AUTH_PASSWORD`.
+> `STATE_URI` is going to be the heroku app base url plus `/state`. Something like `https://duplicate-snowflake-12345.herokuapp.com/state`
+
 Then run `terraform init`.
+
+#### Access Control
+
+It's a little weird, but deploying to heroku actually gives you the ability to control access to your terraform state by way of the heroku dashboard. If you're comfortable with anyone who can issue terraform commands also having access to configure the state server, then the following is a rudimentary but reasonable secure way to keep secrets out of your repo:
+
+```bash
+export BASIC_AUTH_USER=$(heroku config:get BASIC_AUTH_USER --app YOUR_APP_NAME)
+export BASIC_AUTH_PASSWORD=$(heroku config:get BASIC_AUTH_PASSWORD --app YOUR_APP_NAME)
+terraform show
+unset BASIC_AUTH_USER
+unset BASIC_AUTH_PASSWORD
+```
+
+If you have `heroku config` access to that app, this lets you delegate to `heroku auth` for updating state.
 
 ## Maintainer
 
