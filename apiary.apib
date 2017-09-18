@@ -4,6 +4,8 @@ FORMAT: 1A
 
 ## State [/state]
 
+This is a reverse-engineered definition of the Terraform state protocol based on the [http backend documentation](https://www.terraform.io/docs/backends/types/http.html) and experimentation with the terraform cli. It seems to work, but there may be missing/incorrect spots.
+
 ### Get State [GET]
 
 + Response 200
@@ -103,3 +105,13 @@ FORMAT: 1A
 
 + Response 200
 
+
+## ping [/ping]
+
+### ping [GET]
+
++ Response 200 (application/json)
+
+        {
+            "pong": true
+        }
