@@ -1,5 +1,6 @@
 # terraform-state-server
 
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 [![CircleCI](https://circleci.com/gh/ianwremmel/terraform-state-server.svg?style=svg)](https://circleci.com/gh/ianwremmel/terraform-state-server)
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 
@@ -22,6 +23,8 @@ Alternatively, Terraform can be configured to point at a number of different [ba
 ## Install
 
 ### On Heroku
+
+Just click this button: [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 ### Manually
 

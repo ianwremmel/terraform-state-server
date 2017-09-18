@@ -1,0 +1,22 @@
+{
+  "name": "terraform-state-server",
+  "description": "Lightweight Terraform state server (with locking support)",
+  "repository": "https://github.com/ianwremmel/terraform-state-server",
+  "addons": [
+    "heroku-postgresql:hobby-dev"
+  ],
+  "env": {
+    "BASIC_AUTH_PASSWORD": {
+      "description": "The basic-auth password used to authorize requsts from your terraform client",
+      "required": true,
+      "generator": "secret"
+    },
+    "BASIC_AUTH_USER": {
+      "description": "The basic-auth username used to authorize requests from your terraform client",
+      "required": true,
+      "value": "terraform"
+    }
+  },
+  "success_url": "/ping",
+  "website": "https://github.com/ianwremmel/terraform-state-server"
+}
