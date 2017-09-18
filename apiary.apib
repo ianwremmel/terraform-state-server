@@ -1,82 +1,67 @@
 FORMAT: 1A
-HOST: http://polls.apiblueprint.org/
 
 # terraform-state-server
 
 ## State [/state]
 
-### Fetch [GET]
+### Get State [GET]
+
++ Response 200
+
++ Response 404
+
+### Create or Update State [POST /state{?ID}]
+
++ Parameters
+    + ID: true (optional) - lock id returned by `LOCK /state`
+        + default: false
 
 + Response 200
 
 + Response 423
-    
+
+### Create Lock [LOCK]
+
++ Request (application/json)
+
         {
             "ID: "3b4feffc-e1f0-d242-68ab-81714a1336b0",
             "Operation: "OperationTypePlan",
             "Info: "",
-            "Who: "ian@Ians-Mac-mini.local",
-            "Version: "0.10.3",
+            "Who: "johndoe@example.net",
+            "Version: "0.10.5",
             "Created: "2017-09-17T17:41:10.59651162Z",
-            "Path: " 
-        }
-
-### Update [POST /state{?ID}]
-
-+ Parameters
-    + ID - lock id returned by `LOCK /state`
-
-+ Response 200
-
-### Purge [DELETE /state{?force}]
-
-+ Parameters
-    + force (optional) - ignores the lock check for cases where you definitely want to purge (e.g. if a lock is stuck and you really don't care about your state). USE WITH CARE
-    
-+ Response 200
-
-### Lock [LOCK]
-
-+ Request (application/json)
-    
-        { 
-            "ID: "3b4feffc-e1f0-d242-68ab-81714a1336b0",
-            "Operation: "OperationTypePlan",
-            "Info: "",
-            "Who: "ian@Ians-Mac-mini.local",
-            "Version: "0.10.3",
-            "Created: "2017-09-17T17:41:10.59651162Z",
-            "Path: " 
+            "Path": ""
         }
 
 + Response 200
-        
+
 + Response 409
-        
-        { 
+
+        {
             "ID: "3b4feffc-e1f0-d242-68ab-81714a1336b0",
             "Operation: "OperationTypePlan",
             "Info: "",
-            "Who: "ian@Ians-Mac-mini.local",
-            "Version: "0.10.3",
+            "Who: "johndoe@example.net",
+            "Version: "0.10.5",
             "Created: "2017-09-17T17:41:10.59651162Z",
-            "Path: " 
+            "Path": ""
         }
 
-### Unlock [UNLOCK /state{?force}]
+### Release Lock [UNLOCK /state{?force}]
 + Parameters
     + force (optional) - use to unlock in event that no one owns the lock any more. Could happen if something goes very wrong when terraform is running. USE WITH CARE
 
 + Request (application/json)
-    
-        { 
+
+        {
             "ID: "3b4feffc-e1f0-d242-68ab-81714a1336b0",
             "Operation: "OperationTypePlan",
             "Info: "",
-            "Who: "ian@Ians-Mac-mini.local",
-            "Version: "0.10.3",
+            "Who: "johndoe@example.net",
+            "Version: "0.10.5",
             "Created: "2017-09-17T17:41:10.59651162Z",
-            "Path: " 
+            "Path": ""
         }
 
 + Response 200
@@ -84,15 +69,24 @@ HOST: http://polls.apiblueprint.org/
 + Response 409
 
         Not Locked
-        
+
 + Response 423
-        
-        { 
+
+        {
             "ID: "3b4feffc-e1f0-d242-68ab-81714a1336b0",
             "Operation: "OperationTypePlan",
             "Info: "",
-            "Who: "ian@Ians-Mac-mini.local",
-            "Version: "0.10.3",
+            "Who: "johndoe@example.net",
+            "Version: "0.10.5",
             "Created: "2017-09-17T17:41:10.59651162Z",
-            "Path: " 
+            "Path": ""
         }
+
+
+### Purge [DELETE /state{?force}]
+
++ Parameters
+    + force (optional) - ignores the lock check for cases where you definitely want to purge (e.g. if a lock is stuck and you really don't care about your state). USE WITH CARE
+
++ Response 200
+
