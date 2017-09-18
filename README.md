@@ -25,11 +25,11 @@ Alternatively, Terraform can be configured to point at a number of different [ba
 
 ### On Heroku
 
-Just click this button: 
+Just click this button:
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
-This'll configure a [hobby dyno]() and a [heroku postgres]() dev plan, so won't sign you to pay for anything (though you may need a credit card on file to install addons). The dev plan should be more than adequate. At least for this iteration, the server only needs one table with one row. As long as you can tollerate a few extra seconds of latency from time to time, a hobby dyno should be more than adequate for this purpose. 
+This'll configure a [free dyno](https://devcenter.heroku.com/articles/free-dyno-hours) and a [heroku postgres](https://www.heroku.com/postgres) dev plan, so won't sign you to pay for anything (though you may need a credit card on file to install addons). The dev plan should be more than adequate. At least for this iteration, the server only needs one table with one row. As long as you can tollerate a few extra seconds of latency from time to time, a free dyno should be more than adequate for this purpose.
 
 ### Manually
 
@@ -79,9 +79,13 @@ unset BASIC_AUTH_PASSWORD
 
 If you have `heroku config` access to that app, this lets you delegate to `heroku auth` for updating state.
 
+## API
+
+API docs are hosted at [apiary](http://docs.terraformstateserver.apiary.io/#). The api is based on a mix of reverse engineering the command line terraform client and on the [limited documentation](https://www.terraform.io/docs/backends/types/http.html).
+
 ## Maintainer
 
-[Ian Remme](https://github.com/ianwremmel)
+[Ian Remmel](https://github.com/ianwremmel)
 
 ## Contribute
 
