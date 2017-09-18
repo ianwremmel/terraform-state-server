@@ -17,7 +17,7 @@
     "lint:staged": "lint-staged",
     "start": "node -r babel-register .",
     "test": "./test/spec/test.sh",
-    "posttest": "npm run lint && nsp check"
+    "posttest": "npm run lint"
   },
   "keywords": [],
   "dependencies": {
@@ -45,7 +45,6 @@
     "eslint-plugin-prettier": "^2.2.0",
     "husky": "^0.14.3",
     "lint-staged": "^4.2.1",
-    "nsp": "^2.1.0",
     "prettier": "^1.7.0"
   },
   "engines": {

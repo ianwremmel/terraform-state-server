@@ -1,6 +1,7 @@
 # terraform-state-server
 
 [![CircleCI](https://circleci.com/gh/ianwremmel/terraform-state-server.svg?style=svg)](https://circleci.com/gh/ianwremmel/terraform-state-server)
+[![NSP Status](https://nodesecurity.io/orgs/ianwremmel/projects/fd87feb8-514b-43de-9275-470318a78bde/badge)](https://nodesecurity.io/orgs/ianwremmel/projects/fd87feb8-514b-43de-9275-470318a78bde)
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
