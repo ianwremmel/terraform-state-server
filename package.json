@@ -49,8 +49,7 @@
     "prettier": "^1.7.0"
   },
   "engines": {
-    "node": ">=7.10.1",
-    "npm": ">=5.4.1"
+    "node": ">=7.10.1"
   },
   "private": true,
   "lint-staged": {
