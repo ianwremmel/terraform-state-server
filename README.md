@@ -33,7 +33,7 @@ This'll configure a [free dyno](https://devcenter.heroku.com/articles/free-dyno-
 
 ### Manually
 
-You'll need access to a postgres server somewhere (docker is probably your friend here). Make sure you set DATABASE_URL so that the server can access your database.
+You'll need access to a postgres server somewhere (docker is probably your friend here). Make sure you set `DATABASE_URL` so that the server can access your database.
 
 ```bash
 git clone git@github.com:ianwremmel/terraform-state-server.git
