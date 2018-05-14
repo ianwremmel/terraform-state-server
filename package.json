@@ -23,7 +23,7 @@
   "dependencies": {
     "babel-core": "^6.26.3",
     "babel-eslint": "^7.2.3",
-    "babel-preset-env": "^1.6.0",
+    "babel-preset-env": "^1.7.0",
     "babel-register": "^6.26.0",
     "body-parser": "^1.18.1",
     "bunyan": "^2.0.2",
