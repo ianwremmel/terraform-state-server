@@ -17,7 +17,7 @@ if (process.env.BASIC_AUTH_USER || process.env.BASIC_AUTH_PASSWORD) {
   router.use(basicAuth({users: {[`${process.env.BASIC_AUTH_USER}`]: process.env.BASIC_AUTH_PASSWORD}}));
 }
 
-router.use(bodyParser.json());
+router.use(bodyParser.json({limit: `10mb`}));
 
 /**
  * A lock payload sent to or from the Terraform command line client. Note that
