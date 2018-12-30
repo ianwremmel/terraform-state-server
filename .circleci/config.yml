@@ -1,0 +1,51 @@
+restore_cache: &restore_cache
+  keys:
+    - node-modules-{{ arch }}-{{ checksum "package-lock.json" }}
+
+save_cache: &save_cache
+  key: node-modules-{{ arch }}-{{ checksum "package-lock.json" }}
+  paths:
+    - .bin
+    - node_modules
+  when: always
+
+docker: &docker
+  - image: node:10.13.0
+    environment:
+      npm_config_log_level: warn
+      DATABASE_URL: postgres://postgres:password@localhost:5432/postgres
+  - image: postgres
+    environment:
+      POSTGRES_PASSWORD: password
+
+version: 2
+jobs:
+  build:
+    docker: *docker
+    steps:
+      - checkout
+      - restore_cache: *restore_cache
+      - run: npm install -g npm@6.4.1
+      - run: npm ci
+      - run:
+          name: Install Terraform
+          command: |
+            mkdir -p .bin
+            cd .bin
+            if [ ! -e terraform ]; then
+              apt-get update && apt-get install -y unzip
+              wget https://releases.hashicorp.com/terraform/0.10.5/terraform_0.10.5_linux_amd64.zip
+              unzip terraform_0.10.5_linux_amd64.zip
+              chmod +x ./terraform
+              rm terraform_0.10.5_linux_amd64.zip
+            fi
+      - save_cache: *save_cache
+      - run: PATH="$(pwd)/.bin:${PATH}" npm test
+      - store_artifacts:
+          path: reports
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build

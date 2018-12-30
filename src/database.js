@@ -14,7 +14,8 @@ CREATE TABLE IF NOT EXISTS "state" (
 const promise = new Promise((resolve, reject) => {
   assert(process.env.DATABASE_URL, `DATABASE_URL must be defined`);
   const client = new Client({connectionString: process.env.DATABASE_URL});
-  client.connect()
+  client
+    .connect()
     .then(() => client.query(schemaQuery))
     .then(() => resolve(client))
     .catch(reject);
