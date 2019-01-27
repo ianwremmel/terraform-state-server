@@ -29,7 +29,7 @@
     "pg": "^7.8.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^7.3.2",
+    "@commitlint/cli": "^7.4.0",
     "@commitlint/config-conventional": "^7.3.1",
     "@ianwremmel/eslint-plugin-ianwremmel": "^2.0.0",
     "eslint": "^5.12.1",
